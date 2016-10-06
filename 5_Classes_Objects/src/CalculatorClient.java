@@ -7,22 +7,21 @@ public class CalculatorClient {
         do {
             operation = sc.nextLine().toLowerCase();
             String[] split = operation.split(" ");
-            Calculator calc = new Calculator();
 
             if (split[0].equals("sum")){
-                System.out.printf("%.3f", calc.sum(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
+                System.out.printf("%.3f", Calculator.sum(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
             }
             if (split[0].equals("sub")){
-                System.out.printf("%.3f", calc.subtract(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
+                System.out.printf("%.3f", Calculator.subtract(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
             }
             if (split[0].equals("mul")){
-                System.out.printf("%.3f", calc.multiply(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
+                System.out.printf("%.3f", Calculator.multiply(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
             }
             if (split[0].equals("div")){
-                System.out.printf("%.3f", calc.divide(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
+                System.out.printf("%.3f", Calculator.divide(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
             }
             if (split[0].equals("per")){
-                System.out.printf("%.3f", calc.percentage(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
+                System.out.printf("%.3f", Calculator.percentage(Double.parseDouble(split[1]), Double.parseDouble(split[2])));
             }
         }
         while  (!operation.contains("end"));
