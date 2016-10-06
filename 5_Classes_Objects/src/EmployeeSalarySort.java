@@ -1,6 +1,7 @@
+import com.sun.xml.internal.ws.api.model.wsdl.editable.EditableWSDLModel;
+
 import java.util.Arrays;
 import java.util.Scanner;
-// Have no idea how to put this thing in a class...
 
 public class EmployeeSalarySort {
     public static void main(String[] args) {
@@ -23,34 +24,69 @@ public class EmployeeSalarySort {
         }
         Arrays.sort(salaries);
         for (int i = 0; i < n; i++) {
-            if (Double.parseDouble(EmployerData[i][1]) == salaries[n-1]) {
-                for (int j = 0; j < EmployerData[i].length; j++) {
-                    if (j==0) System.out.print( EmployerData[i][j]);
-                    if(EmployerData[i][j]!= null && EmployerData[i][j] != "" &&j!=0)System.out.print(", " + EmployerData[i][j]);
-                }
+            if (Double.parseDouble(EmployerData[i][1]) == salaries[n - 1]) {
+                if (EmployerData[i].length > 5) {
+                    Employee emp = new Employee();
+                    emp.EmployeeSalarySort(EmployerData[i][0], EmployerData[i][3], EmployerData[i][2], EmployerData[i][5]);
 
+                } else if (EmployerData[i].length < 5) {
+                    Employee emp = new Employee();
+                    emp.EmployeeSalarySort(EmployerData[i][0], EmployerData[i][3], EmployerData[i][2]);
+                }
             }
         }
-        System.out.println();
         for (int i = 0; i < n; i++) {
-            if (Double.parseDouble(EmployerData[i][1]) == salaries[n-2]) {
-                for (int j = 0; j < EmployerData[i].length; j++) {
-                    if (j==0) System.out.print( EmployerData[i][j]);
-                    if(EmployerData[i][j]!= null && EmployerData[i][j] != ""&& j!=0)System.out.print(", " + EmployerData[i][j]);
-                }
+            if (Double.parseDouble(EmployerData[i][1]) == salaries[n - 2]) {
+                if (EmployerData[i].length > 5) {
+                    Employee emp = new Employee();
+                    emp.EmployeeSalarySort(EmployerData[i][0], EmployerData[i][3], EmployerData[i][2], EmployerData[i][5]);
 
+                } else if (EmployerData[i].length < 5) {
+                    Employee emp = new Employee();
+                    emp.EmployeeSalarySort(EmployerData[i][0], EmployerData[i][3], EmployerData[i][2]);
+                }
             }
         }
-        System.out.println();
         for (int i = 0; i < n; i++) {
             if (Double.parseDouble(EmployerData[i][1]) == salaries[n-3]) {
-                for (int j = 0; j < EmployerData[i].length; j++) {
-                    if (j==0) System.out.print( EmployerData[i][j]);
-                    if(EmployerData[i][j]!= null && EmployerData[i][j] != ""&& j!=0)System.out.print(", " + EmployerData[i][j]);
-                }
+                if (EmployerData[i].length > 5) {
+                    Employee emp = new Employee();
+                    emp.EmployeeSalarySort(EmployerData[i][0], EmployerData[i][3], EmployerData[i][2], EmployerData[i][5]);
 
+                } else if (EmployerData[i].length < 5) {
+                    Employee emp = new Employee();
+                    emp.EmployeeSalarySort(EmployerData[i][0], EmployerData[i][3], EmployerData[i][2]);
+                }
             }
         }
-        System.out.println();
+
+
+
+    }
+    public static class Employee {
+
+        String name;
+        int salary;
+        String position;
+        String department;
+        int age;
+        String email;
+
+        public Employee () {
+
+
+        }
+        public static void EmployeeSalarySort(String newName, String newPosition, String newDepartment, String newEmail){
+            System.out.println(newName+", "+newDepartment+", "+newPosition+", "+newEmail);
+        }
+        public static void EmployeeSalarySort(String newName, String newPosition, String newDepartment){
+            System.out.println(newName+", "+newDepartment+", "+newPosition);
+        }
+        public int getSalary() {
+            return this.salary;
+        }
+        public void setSalary(int salary) {
+            this.salary = salary;
+        }
     }
 }
