@@ -39,7 +39,8 @@ public class CredentialsManager {
                 i++;
                 System.out.println("ENROLL success");
             }
-            System.out.println(oldPasses[i][k]);
+            System.out.println(oldPasses[i-1][k]);
+
             if (split[0].equals("CHPASS")) {
                 int index = -1;
                 for (int j=0; j <_username.length; j++) {
@@ -48,11 +49,16 @@ public class CredentialsManager {
                         break;
                     }
                 }
+                int countSec = 0;
                 for (int j = 0; j < oldPasses[index].length; j++) {
-                    System.out.println("break");
-                    System.out.println(oldPasses[index][j]);
-                    System.out.println("not here");
-                    if (oldPasses[index][j].equals(split[2])) {
+                    if(oldPasses[index][j] != null){
+                        countSec++;
+                    }
+
+                }
+                for (int j = 0; j < countSec; j++) {
+
+                    if (oldPasses[index][j].equals(split[3])) {
                         contains = true;
                     }
 
