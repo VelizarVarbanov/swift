@@ -1,18 +1,21 @@
+package credentialsManager;
 import java.util.Scanner;
 
 public class CredentialsManager {
     public static int count = 0;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String input = "";
+        Credentials cr = new Credentials();
         do {
             input = sc.nextLine();
             count++;
-            Credentials.CredentialsManager(input);
+            cr.CredentialsManager(input);
         } while (!input.equals("END"));
     }
     static class Credentials {
-
+        public String[][] oldPasses = new String[100][100];
         private static String[] _username = new String[100];
         private static String[] _password = new String[100];
 
@@ -22,10 +25,11 @@ public class CredentialsManager {
         }
         public static int i = 0;
         public static int k = 0;
-        public static void CredentialsManager(String input) {
+        public Credentials() {
 
+        }
+        public  void CredentialsManager(String input) {
             boolean contains = false;// for old password
-            String[][] oldPasses = new String[100][100];
             String[] split = input.split(" ");
             if (split[0].equals("ENROLL")) {
                 _username[i] = split[1];
