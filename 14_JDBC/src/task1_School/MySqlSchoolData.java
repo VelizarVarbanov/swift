@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlSchoolData {
 
@@ -31,7 +33,6 @@ public class MySqlSchoolData {
 
         } catch (SQLException ex) {
 
-            // SQLException is actually a linked list of Exceptions
             while (ex != null) {
 
                 System.out.println(ex.getSQLState());
@@ -46,8 +47,9 @@ public class MySqlSchoolData {
         }
     }
 
-    public void getTeacher(int id) {
+    public List<String> getTeacher(int id) {
 
+        List<String> list = new ArrayList<>();
         String sqlStatement = "SELECT name FROM teachers WHERE id = ?";
 
         try (Connection con = DriverManager.getConnection(DBMS_CONN_STRING, DBMS_USERNAME, DBMS_PASSWORD);
@@ -57,10 +59,7 @@ public class MySqlSchoolData {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                String firstName = rs.getString("name");
-
-                // print the results
-                System.out.format("%s\n", firstName);
+                list.add(rs.getString("name"));
             }
 
         } catch (SQLException ex) {
@@ -78,10 +77,12 @@ public class MySqlSchoolData {
             }
 
         }
+        return list;
     }
 
-    public void getTeachers(int bottom, int top) {
+    public List<String> getTeachers(int bottom, int top) {
 
+        List<String> list = new ArrayList<>();
         String sqlStatement = "SELECT name FROM teachers WHERE salary > ? AND salary < ?";
 
         try (Connection con = DriverManager.getConnection(DBMS_CONN_STRING, DBMS_USERNAME, DBMS_PASSWORD);
@@ -92,15 +93,11 @@ public class MySqlSchoolData {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                String firstName = rs.getString("name");
-
-                // print the results
-                System.out.format("%s\n", firstName);
+               list.add(rs.getString("name"));
             }
 
         } catch (SQLException ex) {
 
-            // SQLException is actually a linked list of Exceptions
             while (ex != null) {
 
                 System.out.println(ex.getSQLState());
@@ -112,6 +109,7 @@ public class MySqlSchoolData {
                 ex = ex.getNextException();
             }
         }
+        return list;
     }
 
     public void insertStudent(String name, String enrollment) {
@@ -142,7 +140,8 @@ public class MySqlSchoolData {
         }
     }
 
-    public void getStudent(int id) {
+    public List<String> getStudent(int id) {
+        List<String> list = new ArrayList<>();
 
         String sqlStatement = "SELECT name FROM students WHERE id = ?";
 
@@ -153,10 +152,8 @@ public class MySqlSchoolData {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                String firstName = rs.getString("name");
+                list.add(rs.getString("name"));
 
-                // print the results
-                System.out.format("%s\n", firstName);
             }
 
         } catch (SQLException ex) {
@@ -173,10 +170,12 @@ public class MySqlSchoolData {
 
             }
         }
+        return list;
     }
 
-    public void getStudents(String date) {
+    public List<String> getStudents(String date) {
 
+        List<String> list = new ArrayList<>();
         String sqlStatement = "SELECT name FROM students WHERE enrollmentDate > ?";
 
         try (Connection con = DriverManager.getConnection(DBMS_CONN_STRING, DBMS_USERNAME, DBMS_PASSWORD);
@@ -186,15 +185,12 @@ public class MySqlSchoolData {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                String firstName = rs.getString("name");
+                list.add(rs.getString("name"));
 
-                // print the results
-                System.out.format("%s\n", firstName);
             }
 
         } catch (SQLException ex) {
 
-            // SQLException is actually a linked list of Exceptions
             while (ex != null) {
 
                 System.out.println(ex.getSQLState());
@@ -206,10 +202,11 @@ public class MySqlSchoolData {
                 ex = ex.getNextException();
             }
         }
+        return list;
     }
 
-    public void getTeachersAndDisciplines(int id) {
-
+    public List<String> getTeachersAndDisciplines(int id) {
+        List<String> list = new ArrayList<>();
         String sqlStatement = "SELECT disciplines.name FROM school.disciplines\n"
                 + "JOIN disciplines_taught AS rel\n"
                 + "ON disciplines.id = rel.discipline_id\n"
@@ -224,10 +221,7 @@ public class MySqlSchoolData {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                String name = rs.getString("name");
-
-                // print the results
-                System.out.format("%s\n", name);
+                list.add(rs.getString("name"));
             }
 
         } catch (SQLException ex) {
@@ -244,10 +238,12 @@ public class MySqlSchoolData {
 
             }
         }
+        return list;
     }
 
-    public void getDisciplinesAndTeachers(String name) {
+    public List<String> getDisciplinesAndTeachers(String name) {
 
+        List<String> list = new ArrayList<>();
         String sqlStatement = "SELECT teachers.name FROM school.teachers\n"
                 + "JOIN disciplines_taught AS rel\n"
                 + "ON teachers.id = rel.teacher_id\n"
@@ -262,10 +258,8 @@ public class MySqlSchoolData {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                String nameTeacher = rs.getString("name");
+                list.add(rs.getString("name"));
 
-                // print the results
-                System.out.format("%s\n", nameTeacher);
             }
         } catch (SQLException ex) {
 
@@ -281,6 +275,7 @@ public class MySqlSchoolData {
 
             }
         }
+        return list;
     }
 }
 
